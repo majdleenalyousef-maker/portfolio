@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap");
+:root{--bg:#fbf8f3;--accent:#e8590c;--accent-soft:#ffa94d;--title:#1b1a17;--subtitle:#625d55;--teal:#0f766e}
+.dark{--bg:#0e0f0d;--accent:#ff8a3d;--accent-soft:#ffc078;--title:#f6f2ea;--subtitle:#aaa397;--teal:#5eead4}
+body{background:radial-gradient(circle at 8% 0,rgba(255,169,77,.22),transparent 30%),radial-gradient(circle at 95% 5%,rgba(15,118,110,.16),transparent 26%),var(--bg)}
+h1,h2,h3,.brand-copy strong{font-family:"Space Grotesk","Inter",sans-serif;letter-spacing:-.02em}
+.hero h1.title{max-width:16ch;background:linear-gradient(100deg,var(--title) 40%,var(--accent) 75%,var(--teal));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite alternate}
+@keyframes flow{to{background-position:100% 0}}
+.hero-badge{background:rgba(232,89,12,.1);border-color:rgba(232,89,12,.25)}
+.primary-btn{box-shadow:0 14px 30px rgba(232,89,12,.28)}
+.primary-btn:hover,.secondary-btn:hover{transform:translateY(-3px)}
+.portrait-card{background:linear-gradient(160deg,rgba(255,169,77,.25),rgba(15,118,110,.12));transform:rotate(2deg);transition:.4s}
+.portrait-card:hover{transform:rotate(0)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:3rem 0 1rem}
+.stats div{padding:1.1rem;border-radius:24px;border:1px solid var(--border);background:var(--surface-elevated);text-align:center}
+.stats b{display:block;font:700 2rem "Space Grotesk",sans-serif;color:var(--accent)}
+.stats span{color:var(--subtitle);font-size:.85rem}
+.marquee{overflow:hidden;margin:2rem 0;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee div{display:flex;gap:2.5rem;width:max-content;animation:scroll 26s linear infinite;font:700 1.5rem "Space Grotesk",sans-serif;color:var(--subtitle)}
+.marquee span:nth-child(3n){color:var(--accent)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.card{transition:transform .35s,box-shadow .35s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow-strong)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+.block{max-width:1180px;margin:0 auto;padding:4rem 1.25rem 1rem}
+.block-title{font-size:clamp(1.7rem,3vw,2.4rem);margin:0 0 1.6rem}
+.block-title::after{content:"";display:block;width:56px;height:4px;border-radius:4px;margin-top:.6rem;background:linear-gradient(90deg,var(--accent),var(--teal))}
+.skill-grid,.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.skill-card,.service-card{padding:1.5rem;border-radius:26px;border:1px solid var(--border);background:var(--surface-elevated);box-shadow:var(--shadow-soft);transition:transform .35s,box-shadow .35s}
+.skill-card:hover,.service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-strong)}
+.skill-card h3,.service-card h3{margin:0 0 1rem;color:var(--title)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips span{padding:.4rem .8rem;border-radius:99px;font-size:.85rem;color:var(--title);background:rgba(232,89,12,.1);border:1px solid rgba(232,89,12,.22);transition:.25s}
+.chips span:hover{background:var(--accent);color:#fff}
+.service-card em{font:700 2.4rem "Space Grotesk",sans-serif;color:var(--accent);font-style:normal;opacity:.85}
+.service-card p{margin:0;color:var(--subtitle);line-height:1.7}
+.journey{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.timeline{list-style:none;margin:0;padding:0 0 0 1.4rem;border-left:2px solid var(--border)}
+.timeline li{position:relative;padding:0 0 1.6rem 1rem;display:flex;flex-direction:column;gap:.2rem}
+.timeline li::before{content:"";position:absolute;left:-1.95rem;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px rgba(232,89,12,.18)}
+.timeline small{color:var(--accent);font-weight:700}
+.timeline b{color:var(--title)}
+.timeline span{color:var(--subtitle);font-size:.92rem}
+@media(max-width:800px){.journey{grid-template-columns:1fr}}
+.skills-groups h4{margin:1.1rem 0 .6rem;color:var(--subtitle);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.skills-list li{background:rgba(232,89,12,.1)!important;border-color:rgba(232,89,12,.22)!important;color:var(--title)!important}

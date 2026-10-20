@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+html {
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+:root {
+  --bg: #f7f6fb;
+  --surface: rgba(255, 255, 255, 0.82);
+  --surface-elevated: #ffffff;
+  --border: rgba(131, 134, 155, 0.14);
+  --title: #151822;
+  --subtitle: #5f6475;
+  --accent: #7a5cff;
+  --accent-soft: #a08cff;
+  --shadow-soft: 0 14px 40px rgba(27, 31, 59, 0.08);
+  --shadow-strong: 0 25px 60px rgba(27, 31, 59, 0.1);
+  --container-padding: 3rem;
+}
+
+.dark {
+  --bg: #0f1118;
+  --surface: rgba(19, 22, 33, 0.88);
+  --surface-elevated: #171b27;
+  --border: rgba(255, 255, 255, 0.08);
+  --title: #f7f8fc;
+  --subtitle: #a0a7bb;
+  --accent: #a58bff;
+  --accent-soft: #c7b9ff;
+  --shadow-soft: 0 16px 42px rgba(0, 0, 0, 0.28);
+  --shadow-strong: 0 28px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(122, 92, 255, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(80, 160, 255, 0.12), transparent 22%),
+    var(--bg);
+  color: var(--title);
+  min-height: 100vh;
+}
+
+.container {
+  width: min(1200px, calc(100% - 2rem));
+  margin-inline: auto;
+  padding: 0 var(--container-padding);
+}
+
+.divider {
+  border-bottom: 1px solid var(--border);
+  margin: 4rem 0;
+}
+
+li { list-style: none; }
+
+a {
+  all: unset;
+  transition: 0.2s ease;
+}
+
+a:hover { cursor: pointer; }
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+button { all: unset; }
+button:active { transform: scale(0.98); }
+button:hover { cursor: pointer; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.scroll2Top {
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  text-align: center;
+  color: white;
+  box-shadow: var(--shadow-strong);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --container-padding: 1rem;
+  }
+
+  .container {
+    width: min(100%, calc(100% - 1rem));
+  }
+
+  .divider {
+    margin: 3rem 0;
+  }
+}

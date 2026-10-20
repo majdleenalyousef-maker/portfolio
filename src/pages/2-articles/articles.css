@@ -1,0 +1,162 @@
+:root {
+  --primary: #000000;
+  --secondary: #f9f9f9;
+  --title: #222222;
+  --subtitle: #555555;
+  --background: #ffffff;
+  --blue: #3b82f6;
+}
+
+body.dark {
+  --primary: #ffffff;
+  --secondary: #27272a;
+  --title: #f4f4f5;
+  --subtitle: #a1a1aa;
+  --background: #121212;
+  --blue: #5dbcff;
+}
+
+.articles-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  color: var(--title);
+}
+
+.articles-section h1 {
+  margin-bottom: 1rem;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border, #ccc);
+  font-size: 1rem;
+  color: var(--title);
+  background-color: var(--secondary);
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.article-card {
+  background-color: var(--secondary);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+body.dark .article-card {
+  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+.article-card:hover {
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+body.dark .article-card:hover {
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+.article-card h2 {
+  margin-bottom: 0.3rem;
+  color: var(--blue);
+}
+
+.article-card .date {
+  font-size: 0.9rem;
+  color: var(--subtitle);
+  margin-bottom: 1rem;
+}
+
+.article-card p {
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: var(--title);
+}
+
+.read-more {
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* تفاصيل المقال */
+.article-detail {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  background-color: var(--secondary);  /* بدل #f9faff */
+  border: 1px solid var(--border, #ccc);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--title); /* بدل #222 */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* زر العودة */
+.article-detail button {
+  background: none;
+  border: none;
+  color: var(--blue);  /* بدل #0077cc */
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.article-detail button:hover {
+  text-decoration: underline;
+}
+
+/* عنوان المقال */
+.article-detail h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: var(--blue); /* بدل #004080 */
+  font-size: 2rem;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+/* تاريخ المقال */
+.article-detail .date {
+  color: var(--subtitle); /* بدل #666 */
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+
+/* محتوى المقال */
+.article-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  white-space: pre-wrap; /* للحفاظ على فقرات ونمط الأسطر */
+  color: var(--title); /* بدل #333 */
+  transition: color 0.3s ease;
+}
