@@ -1,10 +1,21 @@
+
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import "./header.css";
 
+const links = [
+  { label: "Home", path: "/" },
+  { label: "About", path: "/about" },
+  { label: "Projects", path: "/projects" },
+  { label: "Contact", path: "/contact" },
+];
+
 export default function Header() {
-  const [showModal, setShowModal] = useState(false);
-  const [theme, setTheme] = useState(localStorage.getItem("currentMode") ?? "light");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("currentMode") ?? "light"
+  );
+  const location = useLocation();
 
   useEffect(() => {
     document.body.classList.remove("light", "dark");
@@ -12,49 +23,112 @@ export default function Header() {
     localStorage.setItem("currentMode", theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
-  const closeMenu = () => setShowModal(false);
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prev) => prev === "dark" ? "light" : "dark");
+  };
 
   return (
-    <header className="site-header flex">
-      <Link to="/" className="brand">
-        <span className="brand-mark">MA</span>
-        <div className="brand-copy">
-          <strong>Majdleen Alyousef</strong>
-          <span>UI/UX & Front-End Portfolio</span>
+    <header className="site-header">
+      <div className="header-inner">
+        <Link
+          to="/"
+          className="brand"
+          onClick={() => setMenuOpen(false)}
+        >
+          <span className="brand-mark">MA</span>
+          <span className="brand-copy">
+            <strong>Majdleen Alyousef</strong>
+            <span>UI/UX & Front-End Portfolio</span>
+          </span>
+        </Link>
+
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {links.map(({ label, path }) => (
+            <NavLink
+              key={path}
+              to={path}
+              end={path === "/"}
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="header-actions">
+          <button
+            type="button"
+            className="theme-button"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            <span
+              className={
+                theme === "dark" ? "icon-moon-o" : "icon-sun"
+              }
+            />
+          </button>
+
+          <Link to="/contact" className="header-cta">
+            Let's Talk
+          </Link>
+
+          <button
+            type="button"
+            className="mobile-menu-button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            <span className={menuOpen ? "icon-close" : "icon-menu"} />
+          </button>
         </div>
-      </Link>
-
-      <nav>
-        <ul className="flex">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/projects">Projects</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-
-      <div className="header-actions flex">
-        <button onClick={toggleTheme} className="mode flex" aria-label="Toggle theme">
-          {theme === "dark" ? <span className="icon-moon-o"></span> : <span className="icon-sun"></span>}
-        </button>
-        <Link className="header-cta" to="/contact">Let&apos;s Talk</Link>
-        <button className="menu icon-menu flex" onClick={() => setShowModal(true)} aria-label="Open menu"></button>
       </div>
 
-      {showModal && (
-        <div className="fixed">
-          <ul className="modal">
-            <li>
-              <button className="icon-close" onClick={closeMenu} aria-label="Close menu" />
-            </li>
-            <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-            <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-            <li><Link to="/projects" onClick={closeMenu}>Projects</Link></li>
-            <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-          </ul>
-        </div>
+      {menuOpen && (
+        <nav
+          id="mobile-navigation"
+          className="mobile-navigation"
+          aria-label="Mobile navigation"
+        >
+          {links.map(({ label, path }) => (
+            <NavLink
+              key={path}
+              to={path}
+              end={path === "/"}
+              className={({ isActive }) =>
+                isActive ? "mobile-link active" : "mobile-link"
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              {label}
+            </NavLink>
+          ))}
+
+          <Link
+            to="/contact"
+            className="mobile-contact"
+            onClick={() => setMenuOpen(false)}
+          >
+            Let's Work Together
+          </Link>
+        </nav>
       )}
     </header>
   );
