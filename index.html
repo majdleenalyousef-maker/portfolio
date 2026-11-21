@@ -2,6 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      if (['www.majdleenalyousef.com', 'majdleenalyousef.com'].includes(location.hostname)) {
+        const measurementId = 'G-HE3SN992S3'
+        window.dataLayer = window.dataLayer || []
+        function gtag() {
+          window.dataLayer.push(arguments)
+        }
+
+        gtag('js', new Date())
+        gtag('config', measurementId)
+
+        const tag = document.createElement('script')
+        tag.async = true
+        tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId
+        document.head.append(tag)
+
+        let previousScrollY = window.scrollY
+        function trackFirstScroll() {
+          const scrollY = window.scrollY
+          if (scrollY > previousScrollY) {
+            gtag('event', 'scroll_started')
+            window.removeEventListener('scroll', trackFirstScroll)
+          }
+          previousScrollY = scrollY
+        }
+
+        window.addEventListener('scroll', trackFirstScroll, { passive: true })
+      }
+    </script>
     <link rel="icon" type="image/png" href="/profile-portfolio.png" />
     <link rel="stylesheet" href="/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
